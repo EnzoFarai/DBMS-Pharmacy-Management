@@ -1,42 +1,58 @@
--- Important Views for Pharmacy Management System
-
--- View 1: Low Stock Medicines
-CREATE VIEW LowStockMedicines AS
+-- View 1: Expiring Medicines (within 30 days)
+CREATE VIEW ExpiringMedicinesView AS
 SELECT 
-    Medicine_Name,
-    Quantity,
-    Price_Per_Unit,
-    Category
+    medicine_id,
+    medicine_name,
+    batch_number,
+    expiry_date,
+    quantity,
+    DATEDIFF(expiry_date, CURDATE()) AS days_until_expiry
 FROM Medicines
-WHERE Quantity < 60
-ORDER BY Quantity ASC;
+WHERE expiry_date BETWEEN CURDATE() AND DATE_ADD(CURDATE(), INTERVAL 30 DAY);
 
--- View 2: Supplier Summary
-CREATE VIEW SupplierSummary AS
+-- View 2: Top Selling Medicines
+CREATE VIEW TopSellingMedicinesView AS
 SELECT 
-    s.Supplier_Name,
-    COUNT(m.Medicine_ID) as Medicine_Count,
-    SUM(m.Quantity) as Total_Stock
-FROM Suppliers s
-LEFT JOIN Medicines m ON s.Supplier_ID = m.Supplier_ID
-GROUP BY s.Supplier_Name;
-
--- View 3: Customer Purchase Summary
-CREATE VIEW CustomerPurchaseSummary AS
-SELECT 
-    c.Customer_Name,
-    COUNT(s.Sale_ID) as Total_Purchases,
-    SUM(s.Total_Amount) as Total_Spent
-FROM Customers c
-LEFT JOIN Sales s ON c.Customer_ID = s.Customer_ID
-GROUP BY c.Customer_ID, c.Customer_Name;
-
--- View 4: Medicine Sales Summary
-CREATE VIEW MedicineSalesSummary AS
-SELECT 
-    m.Medicine_Name,
-    SUM(sd.Quantity_Sold) as Total_Sold,
-    SUM(sd.Total_Price) as Total_Revenue
+    m.medicine_name,
+    SUM(sd.quantity_sold) AS total_quantity_sold,
+    SUM(sd.total_price) AS total_revenue
 FROM Medicines m
-JOIN Sale_Details sd ON m.Medicine_ID = sd.Medicine_ID
-GROUP BY m.Medicine_ID, m.Medicine_Name;
+JOIN Sale_Details sd ON m.medicine_id = sd.medicine_id
+GROUP BY m.medicine_id, m.medicine_name
+ORDER BY total_quantity_sold DESC;
+
+-- View 3: Supplier Performance
+CREATE VIEW SupplierPerformanceView AS
+SELECT 
+    s.supplier_name,
+    COUNT(m.medicine_id) AS medicines_supplied,
+    SUM(m.quantity) AS total_stock,
+    AVG(m.price_per_unit) AS average_price
+FROM Suppliers s
+LEFT JOIN Medicines m ON s.supplier_id = m.supplier_id
+GROUP BY s.supplier_id, s.supplier_name;
+
+-- View 4: Customer Purchase History
+CREATE VIEW CustomerPurchaseHistory AS
+SELECT 
+    c.customer_name,
+    c.contact_number,
+    COUNT(s.sale_id) AS total_purchases,
+    SUM(s.total_amount) AS total_spent,
+    MAX(s.sale_date) AS last_purchase_date
+FROM Customers c
+LEFT JOIN Sales s ON c.customer_id = s.customer_id
+GROUP BY c.customer_id, c.customer_name, c.contact_number;
+
+-- View 5: Low Stock Alert
+CREATE VIEW LowStockAlert AS
+SELECT 
+    medicine_name,
+    quantity,
+    CASE 
+        WHEN quantity < 20 THEN 'Critical'
+        WHEN quantity < 50 THEN 'Low'
+        ELSE 'Adequate'
+    END AS stock_status
+FROM Medicines
+WHERE quantity < 50;
