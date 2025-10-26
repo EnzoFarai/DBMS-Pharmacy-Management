@@ -71,12 +71,12 @@ The **Pharmacy Management System** addresses critical challenges faced by pharma
 
 ### **Database Management System**
 - **Primary Platform**: MySQL 8.0
-- **Demo Environment**: db-fiddle.com (for instant evaluation)
+- **Demo Environment**: https://www.db-fiddle.com/f/4ZqUVyU8H7h266KzugAdSo/5
 - **Backup Solution**: Local MySQL Server
 - **Compatibility**: Cross-platform support
 
 ### **Development Tools**
-- **SQL IDE**: MySQL Workbench / db-fiddle.com
+- **SQL IDE**: https://www.db-fiddle.com/f/4ZqUVyU8H7h266KzugAdSo/5
 - **Version Control**: Git & GitHub
 - **Documentation**: Markdown & PDF
 - **Diagram Tools**: ERD creation utilities
@@ -389,7 +389,7 @@ While the educational use is encouraged, commercial utilization requires explici
 
 ## 🔗 Quick Links
 
-- **[Live Demo on db-fiddle.com](https://www.db-fiddle.com/f/your-fiddle-id/1)**
+- **[Live Demo on db-fiddle.com]([[https://www.db-fiddle.com/f/your-fiddle-id/1](https://www.db-fiddle.com/f/4ZqUVyU8H7h266KzugAdSo/5)](https://www.db-fiddle.com/f/4ZqUVyU8H7h266KzugAdSo/5))**
 - **[Full Project Report](docs/Project-Report.pdf)**
 - **[Database Schema Diagram](screenshots/schema-design.png)**
 - **[SQL Scripts Directory](sql/)**
