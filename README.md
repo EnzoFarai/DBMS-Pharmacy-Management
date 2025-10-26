@@ -388,7 +388,7 @@ While the educational use is encouraged, commercial utilization requires explici
 
 ## 🔗 Quick Links
 
-- **[Live Demo on db-fiddle.com](https://www.db-fiddle.com/f/4ZqUVyU8H7h266KzugAdSo/5)](https://www.db-fiddle.com/f/4ZqUVyU8**
+- **[Live Demo on db-fiddle.com](https://www.db-fiddle.com/f/4ZqUVyU8H7h266KzugAdSo/5)**
 - **[Full Project Report](docs/Project-Report.pdf)**
 - **[Database Schema Diagram](screenshots/schema-design.png)**
 - **[SQL Scripts Directory](sql/)**
