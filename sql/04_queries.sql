@@ -1,75 +1,65 @@
--- Advanced SQL Queries for Pharmacy Management System
-
--- Query 1: Show all medicines with supplier info
+-- Query 1: Get all medicines with supplier information
 SELECT 
-    m.Medicine_Name,
-    m.Quantity,
-    m.Price_Per_Unit,
-    m.Category,
-    s.Supplier_Name
+    m.medicine_name,
+    m.batch_number,
+    m.expiry_date,
+    m.quantity,
+    m.price_per_unit,
+    s.supplier_name,
+    s.contact_number
 FROM Medicines m
-JOIN Suppliers s ON m.Supplier_ID = s.Supplier_ID;
+JOIN Suppliers s ON m.supplier_id = s.supplier_id
+ORDER BY m.medicine_name;
 
--- Query 2: Show sales with customer details
+-- Query 2: Sales report with customer details
 SELECT 
-    c.Customer_Name,
-    s.Sale_Date,
-    s.Total_Amount,
-    s.Payment_Method
+    s.sale_id,
+    s.sale_date,
+    c.customer_name,
+    s.total_amount,
+    s.payment_method,
+    GROUP_CONCAT(m.medicine_name SEPARATOR ', ') AS medicines_purchased
 FROM Sales s
-JOIN Customers c ON s.Customer_ID = c.Customer_ID
-ORDER BY s.Sale_Date DESC;
+JOIN Customers c ON s.customer_id = c.customer_id
+JOIN Sale_Details sd ON s.sale_id = sd.sale_id
+JOIN Medicines m ON sd.medicine_id = m.medicine_id
+GROUP BY s.sale_id, s.sale_date, c.customer_name, s.total_amount, s.payment_method;
 
--- Query 3: Show detailed sales with medicine info
-SELECT 
-    c.Customer_Name,
-    m.Medicine_Name,
-    sd.Quantity_Sold,
-    sd.Unit_Price,
-    sd.Total_Price,
-    s.Sale_Date
-FROM Sales s
-JOIN Customers c ON s.Customer_ID = c.Customer_ID
-JOIN Sale_Details sd ON s.Sale_ID = sd.Sale_ID
-JOIN Medicines m ON sd.Medicine_ID = m.Medicine_ID;
+-- Query 3: Medicines expiring in next 30 days
+SELECT * FROM ExpiringMedicinesView
+WHERE days_until_expiry > 0
+ORDER BY days_until_expiry ASC;
 
--- Query 4: Top selling medicines
-SELECT 
-    m.Medicine_Name,
-    SUM(sd.Quantity_Sold) as Total_Sold,
-    SUM(sd.Total_Price) as Total_Revenue
-FROM Medicines m
-JOIN Sale_Details sd ON m.Medicine_ID = sd.Medicine_ID
-GROUP BY m.Medicine_ID, m.Medicine_Name
-ORDER BY Total_Sold DESC;
+-- Query 4: Top 5 best-selling medicines
+SELECT * FROM TopSellingMedicinesView
+LIMIT 5;
 
--- Query 5: Customer spending analysis
+-- Query 5: Monthly sales summary
 SELECT 
-    c.Customer_Name,
-    COUNT(s.Sale_ID) as Purchase_Count,
-    SUM(s.Total_Amount) as Total_Spent,
-    AVG(s.Total_Amount) as Avg_Purchase
-FROM Customers c
-JOIN Sales s ON c.Customer_ID = s.Customer_ID
-GROUP BY c.Customer_ID, c.Customer_Name
-ORDER BY Total_Spent DESC;
+    YEAR(sale_date) AS year,
+    MONTH(sale_date) AS month,
+    COUNT(*) AS total_sales,
+    SUM(total_amount) AS total_revenue,
+    AVG(total_amount) AS average_sale
+FROM Sales
+GROUP BY YEAR(sale_date), MONTH(sale_date)
+ORDER BY year DESC, month DESC;
 
--- Query 6: Stock value by category
+-- Query 6: Customer loyalty analysis
 SELECT 
-    Category,
-    COUNT(Medicine_ID) as Medicine_Count,
-    SUM(Quantity) as Total_Stock,
-    SUM(Quantity * Price_Per_Unit) as Total_Value
-FROM Medicines
-GROUP BY Category
-ORDER BY Total_Value DESC;
+    customer_name,
+    total_purchases,
+    total_spent,
+    last_purchase_date
+FROM CustomerPurchaseHistory
+WHERE total_purchases > 0
+ORDER BY total_spent DESC;
 
--- Query 7: Expiring medicines (within 6 months)
-SELECT 
-    Medicine_Name,
-    Expiry_Date,
-    Quantity,
-    Price_Per_Unit
-FROM Medicines
-WHERE Expiry_Date BETWEEN CURDATE() AND DATE_ADD(CURDATE(), INTERVAL 6 MONTH)
-ORDER BY Expiry_Date ASC;
+-- Query 7: Low stock alerts
+SELECT * FROM LowStockAlert
+WHERE stock_status IN ('Critical', 'Low')
+ORDER BY stock_status, quantity ASC;
+
+-- Query 8: Supplier performance report
+SELECT * FROM SupplierPerformanceView
+ORDER BY medicines_supplied DESC;
