@@ -385,11 +385,10 @@ This project is developed for educational purposes as part of the DBMS Lab curri
 ### **Commercial Restrictions**
 While the educational use is encouraged, commercial utilization requires explicit permission from the authors.
 
----
 
 ## 🔗 Quick Links
 
-- **[Live Demo on db-fiddle.com]([[https://www.db-fiddle.com/f/your-fiddle-id/1](https://www.db-fiddle.com/f/4ZqUVyU8H7h266KzugAdSo/5)](https://www.db-fiddle.com/f/4ZqUVyU8H7h266KzugAdSo/5))**
+- **[Live Demo on db-fiddle.com](https://www.db-fiddle.com/f/4ZqUVyU8H7h266KzugAdSo/5)](https://www.db-fiddle.com/f/4ZqUVyU8**
 - **[Full Project Report](docs/Project-Report.pdf)**
 - **[Database Schema Diagram](screenshots/schema-design.png)**
 - **[SQL Scripts Directory](sql/)**
