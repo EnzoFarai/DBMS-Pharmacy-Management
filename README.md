@@ -49,54 +49,137 @@ The application demonstrates key Object-Oriented Programming (OOP) concepts and 
 
 ## How to Run
 
-1. Compile the code using any C++ compiler, for example:
+1. **Prerequisites**: Ensure you have a C++ compiler installed (GCC, Clang, or MSVC)
+
+2. **Compile the code**:
    ```bash
-   g++ quiz.cpp -o quiz
-````
+   g++ -std=c++11 -o quiz quiz.cpp
+   ```
+   or for C++14/17:
+   ```bash
+   g++ -std=c++17 -o quiz quiz.cpp
+   ```
 
-2. Run the program:
-
+3. **Run the program**:
    ```bash
    ./quiz
    ```
 
----
-
-## 📸 Program Output Showcase
-
-### 🖥️ 1. Program Initialization
-
-<img src="https://raw.githubusercontent.com/EnzoFarai/Object-Oriented-Programming-Project/main/Output/Output-1_PROGRAM-INITIALIZATION.png" width="700">
+4. **On Windows** (if using MinGW or similar):
+   ```cmd
+   g++ -o quiz quiz.cpp
+   quiz.exe
+   ```
 
 ---
 
-### ✅ 2. Correct Answer Scenario
+## Program Output Showcase
 
-<img src="https://raw.githubusercontent.com/EnzoFarai/Object-Oriented-Programming-Project/main/Output/Output-2_CORRECT-ANSWER-SCENARIO.png" width="700">
+### 1. 🖥️ Program Initialization
+![Program Initialization](https://raw.githubusercontent.com/EnzoFarai/Object-Oriented-Programming-Project/main/Output/Output-1_PROGRAM-INITIALIZATION.png)
+
+*The application starts with a welcome message and displays the first question with multiple choice options.*
+
+### 2. ✅ Correct Answer Scenario
+![Correct Answer Scenario](https://raw.githubusercontent.com/EnzoFarai/Object-Oriented-Programming-Project/main/Output/Output-2_CORRECT-ANSWER-SCENARIO.png)
+
+*When a user selects the correct answer, immediate positive feedback is provided.*
+
+### 3. ❌ Incorrect Answer with Explanation
+![Incorrect Answer with Explanation](https://raw.githubusercontent.com/EnzoFarai/Object-Oriented-Programming-Project/main/Output/Output-3_INCORRECT-ANSWER-WITH-EXPLANATION.png)
+
+*Incorrect answers display detailed explanations to enhance learning and understanding.*
+
+### 4. ⏭️ Skipped Question Handling
+![Skipped Question Handling](https://raw.githubusercontent.com/EnzoFarai/Object-Oriented-Programming-Project/main/Output/Output-4_SKIPPED-QUESTION-HANDLING.png)
+
+*Skipped questions show the correct answer with explanation, ensuring learning opportunity.*
+
+### 5. 🧮 Comprehensive Results Display
+![Comprehensive Results Display](https://raw.githubusercontent.com/EnzoFarai/Object-Oriented-Programming-Project/main/Output/Output-5_COMPREHENSIVE-RESULTS-DISPLAY.png)
+
+*Final results show total score, percentage, time taken, and performance feedback.*
+
+### 6. ⚠️ Error Handling Demonstration
+![Error Handling Demonstration](https://raw.githubusercontent.com/EnzoFarai/Object-Oriented-Programming-Project/main/Output/Output-6_ERROR-HANDLING-DEMONSTRATION.png)
+
+*Robust error handling for invalid inputs with clear instructions for correction.*
 
 ---
 
-### ❌ 3. Incorrect Answer with Explanation
+## Code Structure
 
-<img src="https://raw.githubusercontent.com/EnzoFarai/Object-Oriented-Programming-Project/main/Output/Output-3_INCORRECT-ANSWER-WITH-EXPLANATION.png" width="700">
+### Main Classes:
+
+1. **Question** (Base Class)
+   - Stores question text, options, correct answer, and explanation
+   - Virtual methods for display and answer validation
+
+2. **TimedQuestion** (Derived Class)
+   - Inherits from Question
+   - Adds timing functionality for individual questions
+
+3. **QuizManager**
+   - Manages the quiz flow and question sequence
+   - Handles scoring and timing
+   - Provides user interaction
+
+### Key Methods:
+- `displayQuestion()`: Shows question and options
+- `checkAnswer()`: Validates user input
+- `calculateScore()`: Computes final results
+- `showResults()`: Displays comprehensive feedback
 
 ---
 
-### ⏭️ 4. Skipped Question Handling
+## Sample Questions
 
-<img src="https://raw.githubusercontent.com/EnzoFarai/Object-Oriented-Programming-Project/main/Output/Output-4_SKIPPED-QUESTION-HANDLING.png" width="700">
+The quiz includes 12 questions covering:
+- Class and Object concepts
+- Inheritance and Polymorphism
+- Constructors and Destructors
+- Memory management in C++
+- Virtual functions and Abstract classes
+- Operator overloading and Templates
 
 ---
 
-### 🧮 5. Comprehensive Results Display
+## Learning Outcomes
 
-<img src="https://raw.githubusercontent.com/EnzoFarai/Object-Oriented-Programming-Project/main/Output/Output-5_COMPREHENSIVE-RESULTS-DISPLAY.png" width="700">
+By studying this code, you'll understand:
+- Practical implementation of OOP principles in C++
+- Proper memory management using dynamic allocation
+- Polymorphism through inheritance and virtual functions
+- Time measurement using chrono library
+- Building interactive console applications
+- Error handling and input validation
 
 ---
 
-### ⚠️ 6. Error Handling Demonstration
+## Future Enhancements
 
-<img src="https://raw.githubusercontent.com/EnzoFarai/Object-Oriented-Programming-Project/main/Output/Output-6_ERROR-HANDLING-DEMONSTRATION.png" width="700">
+Potential improvements for this application:
+- Add file I/O to load questions from external files
+- Implement different difficulty levels
+- Add category-based question selection
+- Include graphical user interface (GUI)
+- Add user authentication and score history
+- Implement randomized question order
+
+---
+
+## Author
+
+**Farai Edwin Masawi**  
+**24BCA10007**  
+BCA — Chandigarh University  
+(2025)
+
+---
+
+## License
+
+This project is open source and available under the [MIT License](LICENSE).
 
 ---
 
