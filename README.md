@@ -20,10 +20,11 @@ A comprehensive **Database Management System** designed for modern pharmacy oper
 The **Pharmacy Management System** addresses critical challenges faced by pharmaceutical retail operations through an integrated database solution. Traditional pharmacies often struggle with manual record-keeping, inventory tracking, expiry management, and sales reporting. This system provides a centralized platform that automates these processes while ensuring data consistency and business intelligence.
 
 ### 🎓 **Academic Context**
+- **Name**: Farai Edwin Masawi 
 - **Course**: Database Management Systems (DBMS) Lab
-- **University**: [Your University Name]
-- **Semester**: [Current Semester]
-- **Instructor**: [Professor's Name]
+- **University**: Chandigarh University 
+- **Semester**: 3
+- **Instructor**: Simran Pandey
 
 ### 🚀 **Business Problem Solved**
 - **Manual Inventory Tracking**: Automated stock management with real-time updates
