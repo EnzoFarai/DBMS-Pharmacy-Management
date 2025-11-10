@@ -1,110 +1,113 @@
-# Pharmacy Management System
+# 💊 Pharmacy Management System
+A comprehensive **Database Management System (DBMS)** for pharmacy operations, developed as part of an academic project.
 
-A comprehensive Database Management System for pharmacy operations, developed as part of DBMS Lab academic project.
+---
 
 ## 🎯 Project Overview
-
 This system manages pharmacy inventory, sales, customers, suppliers, and prescriptions with automated stock tracking and reporting capabilities.
+
+---
 
 ## 🗃️ Database Schema
 
-### Entities
-- **Medicines**: Product inventory with expiry tracking
-- **Suppliers**: Medicine suppliers information
-- **Customers**: Customer profiles and history
-- **Sales**: Transaction records
-- **Sale_Details**: Individual sale items
-- **Prescriptions**: Customer prescriptions
+**Entities**
+- **Medicines:** Product inventory with expiry tracking  
+- **Suppliers:** Medicine suppliers information  
+- **Customers:** Customer profiles and history  
+- **Sales:** Transaction records  
+- **Sale_Details:** Individual sale items  
+- **Prescriptions:** Customer prescriptions  
+
+**Schema Design:**
+> Visual representation of all database tables and their relationships.
+
+![Database Schema](screenshots/schema-design.png)
+
+---
 
 ## 🚀 Quick Start
 
-### Option 1: db-fiddle.com (Recommended for Demo)
-1. Visit [db-fiddle.com](https://www.db-fiddle.com)
-2. Select MySQL 8.0
-3. Run the SQL files in this order:
+### **Option 1: Run on db-fiddle.com (Recommended for Demo)**
+You can instantly explore and test this project without local setup:  
+👉 **[Open DB Fiddle](https://www.db-fiddle.com/f/4ZqUVyU8H7h266KzugAdSo/5)**  
+
+**Steps:**
+1. Select **MySQL 8.0** on [db-fiddle.com](https://www.db-fiddle.com)
+2. Run the SQL files in this order:
    - `01_schema.sql`
    - `02_inserts.sql`
    - `03_views.sql`
    - `04_queries.sql`
    - `05_triggers.sql`
 
-### Option 2: Local MySQL Setup
+### **Option 2: Local MySQL Setup**
 ```bash
 # Import complete database
 mysql -u username -p < database/pharmacy_db_backup.sql
-```
+📊 Key Features
+✅ Inventory Management with Expiry Tracking
+✅ Sales and Billing System
+✅ Customer Relationship Management
+✅ Supplier Performance Analytics
+✅ Automated Stock Alerts
+✅ Prescription Management
+✅ Comprehensive Reporting
 
-## 📊 Key Features
-
-- ✅ Inventory Management with Expiry Tracking
-- ✅ Sales and Billing System
-- ✅ Customer Relationship Management
-- ✅ Supplier Performance Analytics
-- ✅ Automated Stock Alerts
-- ✅ Prescription Management
-- ✅ Comprehensive Reporting
-
-## 🔍 Sample Queries
-
-### Get Expiring Medicines
-```sql
+🔍 Sample Queries
+1. Get Expiring Medicines
+sql
+Copy code
 SELECT * FROM ExpiringMedicinesView;
-```
+Result:
 
-### Top Selling Products
-```sql
+2. Top Selling Products
+sql
+Copy code
 SELECT * FROM TopSellingMedicinesView LIMIT 5;
-```
+Result:
 
-### Sales Report
-```sql
-SELECT * FROM CustomerPurchaseHistory ORDER BY total_spent DESC;
-```
+🖥️ DB Fiddle Interface
+Demonstration of the online MySQL environment used for testing and validation.
 
-## 📁 Project Structure
-```
+
+📁 Project Structure
+pgsql
+Copy code
 DBMS-Pharmacy-Management/
 ├── sql/           # All SQL scripts
 ├── screenshots/   # Query results and schema
 ├── docs/          # PBL documentation
 └── database/      # Complete database backup
+📄 License
+Academic Project — MIT License
 
-## 📄 License
-Academic Project - MIT License
+🧾 Documentation
+/docs/Project-Report.docx should include:
 
-## 🎯 db-fiddle.com Instructions
+Problem Statement
 
-**YES! Keep db-fiddle.com** - it's perfect for academic demonstrations. Here's how to present it:
+Literature Review
 
-1. **Create the fiddle**: Go to db-fiddle.com, select MySQL 8.0
-2. **Run schema first**: Paste and run `01_schema.sql`
-3. **Insert data**: Run `02_inserts.sql` 
-4. **Create views**: Run `03_views.sql`
-5. **Test queries**: Run individual queries from `04_queries.sql`
-6. **Save the fiddle**: Click "Save" to get a permanent link for your lecturer
+System Analysis
 
-**Benefits of db-fiddle.com:**
-- No installation required
-- Instant demonstration capability
-- Shareable link for evaluation
-- Supports all MySQL features we used
-- Perfect for academic presentations
+ER Diagrams
 
-## 📋 Additional Files
+Normalization Proofs
 
-### `/docs/Project-Report.docx`
-Create a comprehensive PDF report including:
-- Problem Statement
-- Literature Review
-- System Analysis
-- ER Diagrams
-- Normalization proofs
-- Implementation details
-- Screenshots and results
-- Conclusion and future work
+Implementation Details
 
-### Screenshots to Include:
-1. **Schema Design**: Show tables and relationships
-2. **Query Results**: 4-5 different query outputs
-3. **Views Demonstration**: Show view creations and results
-4. **db-fiddle Interface**: Show the working environment
+Screenshots and Results
+
+Conclusion and Future Work
+
+📸 Screenshots Summary
+Schema Design: screenshots/schema-design.png
+
+Query Results:
+
+screenshots/query-results-1.png
+
+screenshots/query-results-2.png
+
+DB Fiddle Interface: screenshots/db-fiddle-interface.png
+
