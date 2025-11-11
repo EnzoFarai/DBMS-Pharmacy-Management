@@ -34,19 +34,36 @@ Below is the visual representation of the schema used in the project:
 
 ## 🧪 Sample Queries & Results
 
-### 🔹 Query 1: Expiring Medicines  
+### 🔹 Query 1: Get All Medicines with Supplier Information  
 ```sql
-SELECT * FROM ExpiringMedicinesView;
+SELECT 
+    m.medicine_name,
+    m.batch_number,
+    m.expiry_date,
+    m.quantity,
+    m.price_per_unit,
+    s.supplier_name
+FROM Medicines m
+JOIN Suppliers s ON m.supplier_id = s.supplier_id
+ORDER BY m.medicine_name;
 ````
 
 [![Query Result 1](screenshots/query-results-1.png)](screenshots/query-results-1.png)
 
 ---
 
-### 🔹 Query 2: Top Selling Products
+### 🔹 Query 2: Sales Report with Customer Details
 
 ```sql
-SELECT * FROM TopSellingMedicinesView LIMIT 5;
+SELECT 
+    s.sale_id,
+    s.sale_date,
+    c.customer_name,
+    s.total_amount,
+    s.payment_method
+FROM Sales s
+JOIN Customers c ON s.customer_id = c.customer_id
+ORDER BY s.sale_date DESC;
 ```
 
 [![Query Result 2](screenshots/query-results-2.png)](screenshots/query-results-2.png)
@@ -99,22 +116,39 @@ mysql -u username -p < database/pharmacy_db_backup.sql
 
 ## 📋 Sample Queries
 
-**Get Expiring Medicines**
+**Show Tables**
 
 ```sql
-SELECT * FROM ExpiringMedicinesView;
+SHOW TABLES;
 ```
 
-**Top Selling Products**
+**Get Medicines with Supplier Info**
 
 ```sql
-SELECT * FROM TopSellingMedicinesView LIMIT 5;
+SELECT 
+    m.medicine_name,
+    m.batch_number,
+    m.expiry_date,
+    m.quantity,
+    m.price_per_unit,
+    s.supplier_name
+FROM Medicines m
+JOIN Suppliers s ON m.supplier_id = s.supplier_id
+ORDER BY m.medicine_name;
 ```
 
-**Sales Report**
+**Sales Report with Customer Details**
 
 ```sql
-SELECT * FROM CustomerPurchaseHistory ORDER BY total_spent DESC;
+SELECT 
+    s.sale_id,
+    s.sale_date,
+    c.customer_name,
+    s.total_amount,
+    s.payment_method
+FROM Sales s
+JOIN Customers c ON s.customer_id = c.customer_id
+ORDER BY s.sale_date DESC;
 ```
 
 ---
@@ -160,32 +194,22 @@ DBMS-Pharmacy-Management/
 
 ### `/docs/Project-Report.docx`
 
-Include:
-
-* Problem Statement
-* Literature Review
-* System Analysis
-* ER Diagrams
-* Normalization proofs
-* Implementation details
-* Screenshots and results
-* Conclusion and future work
-
 ---
 
 ## 🖼️ Screenshots Summary
 
-| Screenshot                                        | Description                         |
-| ------------------------------------------------- | ----------------------------------- |
-| ![Schema](screenshots/schema-design.png)          | Database Schema Design              |
-| ![Query 1](screenshots/query-results-1.png)       | Query Result – Expiring Medicines   |
-| ![Query 2](screenshots/query-results-2.png)       | Query Result – Top Selling Products |
-| ![DB Fiddle](screenshots/db-fiddle-interface.png) | db-fiddle Interface                 |
+| Screenshot                                        | Description                                       |
+| ------------------------------------------------- | ------------------------------------------------- |
+| ![Schema](screenshots/schema-design.png)          | Database Schema Design                            |
+| ![Query 1](screenshots/query-results-1.png)       | Query Result – Medicines with Supplier Info       |
+| ![Query 2](screenshots/query-results-2.png)       | Query Result – Sales Report with Customer Details |
+| ![DB Fiddle](screenshots/db-fiddle-interface.png) | db-fiddle Interface                               |
 
 ---
 
 ### 🌟 Developed by:
 
-**Farai Edwin Masawi**
+**Enzo Farai**
 *BCA – Chandigarh University*
 📘 Academic DBMS Project
+
